@@ -184,6 +184,11 @@ func (client *XmppClient) UploadFileFromBytes(
 		return
 	}
 
+	//Copy headers from slot.Header
+	for k, v := range slot.Header {
+		req.Header[k] = v
+	}
+
 	//make request
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -202,6 +207,7 @@ func (client *XmppClient) UploadFileFromBytes(
 	// Send final progress with GetURL
 	sendProgress(request.Size, request.Size, nil, slot.GetURL.String(), progressChan)
 }
+
 
 // UploadFile handles the complete process of uploading a file to the XMPP server.
 // It first requests an upload slot, then performs the HTTP PUT request to upload the file.
