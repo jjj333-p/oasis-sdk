@@ -15,7 +15,7 @@ func (client *XmppClient) SendText(to jid.JID, body string) error {
 
 	//determine if we're sending to a group chat
 	var msgType stanza.MessageType
-	if client.mucChannels[to.String()] == nil {
+	if client.MucChannels[to.String()] == nil {
 		msgType = stanza.ChatMessage
 	} else {
 		msgType = stanza.GroupChatMessage
@@ -47,7 +47,7 @@ func (client *XmppClient) SendSingleFileMessage(to jid.JID, url string, descript
 
 	//determine if we're sending to a group chat
 	var msgType stanza.MessageType
-	if client.mucChannels[to.String()] == nil {
+	if client.MucChannels[to.String()] == nil {
 		msgType = stanza.ChatMessage
 	} else {
 		msgType = stanza.GroupChatMessage
@@ -190,7 +190,7 @@ func (client *XmppClient) internalHandleGroupMsg(header stanza.Message, t xmlstr
 		ChatMessageBody: *body,
 	}
 
-	ch := client.mucChannels[msg.From.Bare().String()]
+	ch := client.MucChannels[msg.From.Bare().String()]
 
 	fmt.Printf("groupchat %s, found channel: %t\n", msg.From.String(), ch == nil)
 

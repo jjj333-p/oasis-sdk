@@ -155,7 +155,7 @@ type XmppClient struct {
 	HttpUploadComponent    *HttpUploadComponent
 	MucClient              *muc.Client
 	mucsToJoin             []jid.JID
-	mucChannels            map[string]*muc.Channel
+	MucChannels            map[string]*muc.Channel
 	dmHandler              ChatMessageHandler
 	groupMessageHandler    GroupChatMessageHandler
 	chatstateHandler       ChatstateHandler

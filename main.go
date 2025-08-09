@@ -78,7 +78,7 @@ func (client *XmppClient) Connect() error {
 				println(err.Error())
 				continue
 			}
-			client.mucChannels[mucStr] = ch
+			client.MucChannels[mucStr] = ch
 			fmt.Printf("joined muc %d/%d\n", i+1, n)
 		}
 	}()
@@ -118,7 +118,7 @@ func CreateClient(
 		deliveryReceiptHandler: deliveryReceiptHandler,
 		readReceiptHandler:     readReceiptHandler,
 		mucsToJoin:             mucJIDs,
-		mucChannels:            make(map[string]*muc.Channel),
+		MucChannels:            make(map[string]*muc.Channel),
 	}
 	client.Ctx, client.CtxCancel = context.WithCancel(context.Background())
 
